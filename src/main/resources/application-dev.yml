@@ -2,3 +2,43 @@ server:
   port: 8083
   servlet:
     context-path: /alicrm
+
+
+
+################################mybatis配置##################################################
+mybatis:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+
+#mybatis-plus:
+#  mapper-locations: classpath*:/mapper/**Mapper.xml
+#
+#pagehelper:
+#  autoRuntimeDialect: true
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+##############################################################################################
+
+
+######################################数据库配置信息########################################################
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/rookie_crm?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      #minimum-idle: 10
+      #maximum-pool-size: 80
+      #pool-name: HikariC
+      #      最小空闲链接数
+      minimumIdle: 2
+      #      最大链接数
+      maximumPoolSize: 10
+      #      最大生命周期
+      maxLifetime: 180000
+      #      最长闲置时间
+      idleTimeout: 60000
+      #      等待连接池的最大毫秒数
+      connectionTimeout: 20000
