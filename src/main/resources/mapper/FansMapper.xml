@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rookie.bigdata.mapper.FansMapper">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="resultMap" type="com.rookie.bigdata.entity.crm.Fans">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+        <result column="member_id" property="memberId" jdbcType="BIGINT" javaType="long"/>
+        <result column="ouid" property="ouid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="omid" property="omid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="mix_phone" property="mixPhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="open_id" property="openId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="union_id" property="unionId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="type" property="type" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+
+    </resultMap>
+    <select id="selectFansByMap" parameterType="java.util.Map" resultMap="resultMap">
+        select *
+        from rookie_crm.tb_fans
+        where 1=1
+        <if test="type !=null and type !='' ">
+            and type = #{type}
+        </if>
+        <if test="ouid !=null and ouid !='' ">
+            and ouid = #{ouid}
+        </if>
+        <if test="phone !=null and phone !='' ">
+            and phone = #{phone}
+        </if>
+        limit 1
+    </select>
+
+
+</mapper>

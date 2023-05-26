@@ -10,7 +10,7 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 
 /**
  * @Class GsonHttpMessageConverterConfiguration
- * @Description 
+ * @Description
  * @Author rookie
  * @Date 2023/5/26 11:09
  * @Version 1.0
