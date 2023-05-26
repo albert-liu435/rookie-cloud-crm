@@ -58,6 +58,15 @@
             <version>8.0.28</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>taobao-sdk</groupId>
+            <artifactId>taobao-sdk-java-auto</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1640832741128-20220826.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <build>

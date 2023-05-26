@@ -3,10 +3,28 @@
 <mapper namespace="com.rookie.bigdata.mapper.TaoBaoSpiMpper">
 
 
-<!--查询出所有的taobao spi信息-->
-<select id="selectAll" resultType="com.rookie.bigdata.entity.taobao.TaoBaoSPI">
-    select server_url as serverUrl
-    from rookie_crm.taobao_spi
-</select>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="resultMap" type="com.rookie.bigdata.entity.taobao.TaoBaoSPI">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+        <result column="server_url" property="serverUrl" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="shop_code" property="shopCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_key" property="appKey" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_secret" property="appSecret" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="session_key" property="sessionKey" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="app_type" property="appType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+
+    </resultMap>
+
+
+
+
+    <!--查询出所有的taobao spi信息-->
+    <select id="selectByAppType" resultMap="resultMap">
+        select *
+        from rookie_crm.taobao_spi
+        where app_type = #{appType}
+    </select>
 
 </mapper>

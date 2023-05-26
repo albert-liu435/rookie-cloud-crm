@@ -2,6 +2,7 @@ package com.rookie.bigdata.mapper;
 
 import com.rookie.bigdata.entity.taobao.TaoBaoSPI;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,6 +18,6 @@ public interface TaoBaoSpiMpper {
 
 
 
-    List<TaoBaoSPI> selectAll();
+    List<TaoBaoSPI> selectByAppType(@Param("appType") String appType);
 
 }

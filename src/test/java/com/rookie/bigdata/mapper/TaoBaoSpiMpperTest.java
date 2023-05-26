@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -23,11 +25,15 @@ class TaoBaoSpiMpperTest {
     private TaoBaoSpiMpper taoBaoSpiMpper;
 
     @Test
-    void selectAll() {
+    void selectByAppType() {
 
-        for (TaoBaoSPI taoBaoSPI : taoBaoSpiMpper.selectAll()) {
+        List<TaoBaoSPI> taoBaoSPIS = taoBaoSpiMpper.selectByAppType("order");
 
-            System.out.println(taoBaoSPI.getServiceUrl());
+        System.out.println("测试"+taoBaoSPIS.size());
+
+        for (TaoBaoSPI taoBaoSPI : taoBaoSPIS) {
+
+            System.out.println(taoBaoSPI);
         }
 
     }
