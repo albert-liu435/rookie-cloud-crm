@@ -1,5 +1,7 @@
 package com.rookie.bigdata.service.taobao.impl;
 
+import com.rookie.bigdata.entity.taobao.TaoBaoBindQueryIn;
+import com.rookie.bigdata.entity.taobao.TaoBaoBindQueryOut;
 import com.rookie.bigdata.service.taobao.TaoBaoOrderOuidService;
 import com.rookie.bigdata.service.taobao.TaoBaoService;
 import com.rookie.bigdata.service.taobao.TaoBaoSpiService;
@@ -46,5 +48,12 @@ public class TaoBaoServiceImpl implements TaoBaoService {
 
 
         return execute.getBody();
+    }
+
+    @Override
+    public TaoBaoBindQueryOut bindQuery(TaoBaoBindQueryIn taoBaoBindQuery) {
+        //TODO 查询粉丝表，看看是否有淘宝的粉丝信息
+
+        return null;
     }
 }

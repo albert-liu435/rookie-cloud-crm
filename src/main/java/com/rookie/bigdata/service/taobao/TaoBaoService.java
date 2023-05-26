@@ -1,5 +1,7 @@
 package com.rookie.bigdata.service.taobao;
 
+import com.rookie.bigdata.entity.taobao.TaoBaoBindQueryIn;
+import com.rookie.bigdata.entity.taobao.TaoBaoBindQueryOut;
 import com.rookie.bigdata.entity.taobao.TaoBaoSPI;
 import com.taobao.api.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,4 +19,11 @@ public interface TaoBaoService {
     String queryCrmOrder(String shopCode, Long tid) throws ApiException;
 
 
+    /**
+     * 淘宝绑定查询
+     *
+     * @param taoBaoBindQuery
+     * @return
+     */
+    TaoBaoBindQueryOut bindQuery(TaoBaoBindQueryIn taoBaoBindQuery);
 }
