@@ -100,6 +100,13 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.taobao.sdk</groupId>-->
+<!--            <artifactId>taobao-sdk-java</artifactId>-->
+<!--            <version>1555317847487-20240115</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <dependencyManagement>
@@ -330,5 +337,7 @@
             </plugins>
         </pluginManagement>
     </build>
+
+
 
 </project>
