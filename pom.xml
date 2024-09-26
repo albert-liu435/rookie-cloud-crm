@@ -3,111 +3,332 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
-<!--    <parent>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
-<!--        <version>2.7.8</version>-->
-<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-<!--    </parent>-->
 
     <groupId>com.rookie.bigdata</groupId>
     <artifactId>rookie-cloud-crm</artifactId>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
     <name>rookie-cloud-crm</name>
     <description>rookie-cloud-crm</description>
+
+    <modules>
+
+        <module>rookie-crm</module>
+        <module>rookie-job</module>
+        <module>rookie-auth</module>
+        <module>rookie-gateway</module>
+        <module>rookie-common</module>
+
+        <!-- 基础模块 -->
+        <!--          <module>youlai-common</module>
+                  <module>youlai-gateway</module>
+                  <module>youlai-system</module>
+                  <module>youlai-auth</module>-->
+
+        <!-- 商城模块 -->
+        <!--            <module>mall-sms</module>
+                    <module>mall-ums</module>
+                    <module>mall-pms</module>
+                    <module>mall-oms</module>-->
+    </modules>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+
     <properties>
-        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <!-- Spring Cloud版本号 -->
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <!-- Spring Cloud Alibaba版本号 -->
+        <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+
+
+        <!-- 数据库 & ORM -->
+        <!--            <mysql.version>8.0.28</mysql.version>
+                    <druid.version>1.2.20</druid.version>
+                    <mybatis-plus.version>3.5.5</mybatis-plus.version>-->
+
+        <!-- 接口文档工具 -->
+        <!--      <knife4j.version>4.3.0</knife4j.version>
+              <swagger.version>2.1.0</swagger.version>-->
+
+        <!-- 工具 -->
+        <!--            <mapstruct.version>1.5.5.Final</mapstruct.version>-->
+        <mapstruct.version>1.6.2</mapstruct.version>
+        <hutool.version>5.8.32</hutool.version>
+
+        <!--            <hutool.version>5.8.26</hutool.version>
+
+                    <weixin-java.version>4.1.5.B</weixin-java.version>
+                    <easyexcel.version>3.3.2</easyexcel.version>
+                    <nimbus-jose-jwt.version>9.16.1</nimbus-jose-jwt.version>-->
+
+        <!-- 阿里云短信 -->
+        <!--     <aliyun.java.sdk.core.version>4.6.4</aliyun.java.sdk.core.version>
+             <aliyun.java.sdk.dysmsapi.version>2.2.1</aliyun.java.sdk.dysmsapi.version>-->
+
+        <!-- 阿里云OSS -->
+        <!--  <aliyun-sdk-oss.version>3.17.4</aliyun-sdk-oss.version>-->
+
+        <!-- minio -->
+        <!--            <minio.version>8.5.6</minio.version>
+                    <okhttp3.version>4.8.1</okhttp3.version>-->
+
+        <!-- redisson 分布式锁 -->
+        <!--           <redisson.version>3.24.3</redisson.version>-->
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jackson-annotations</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-databind</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-datatype-jdk8</artifactId>
-                    <groupId>com.fasterxml.jackson.datatype</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-datatype-jsr310</artifactId>
-                    <groupId>com.fasterxml.jackson.datatype</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-core</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-module-parameter-names</artifactId>
-                    <groupId>com.fasterxml.jackson.module</groupId>
-                </exclusion>
-            </exclusions>
-
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis.spring.boot</groupId>-->
-<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--            <version>2.3.0</version>-->
-<!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.28</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>taobao-sdk</groupId>
-            <artifactId>taobao-sdk-java-auto</artifactId>
-            <version>1.0.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1640832741128-20220826.jar</systemPath>
-        </dependency>
-
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <!--Spring Cloud  & Alibaba  -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- API 接口文档 -->
+            <!--
+                            <dependency>
+                                <groupId>com.github.xiaoymin</groupId>
+                                <artifactId>knife4j-dependencies</artifactId>
+                                <version>${knife4j.version}</version>
+                                <type>pom</type>
+                                <scope>import</scope>
+                            </dependency>
+            -->
+
+            <!--                <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql.version}</version>
+                            </dependency>-->
+
+            <!--                <dependency>
+                                <groupId>com.alibaba</groupId>
+                                <artifactId>druid-spring-boot-starter</artifactId>
+                                <version>${druid.version}</version>
+                            </dependency>-->
+
+            <!--                <dependency>
+                                <groupId>com.baomidou</groupId>
+                                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                                <version>${mybatis-plus.version}</version>
+                            </dependency>-->
+
+            <!-- 分布式文件存储 -->
+            <!--                <dependency>
+                                <groupId>io.minio</groupId>
+                                <artifactId>minio</artifactId>
+                                <version>${minio.version}</version>
+                            </dependency>-->
+
+            <!--                <dependency>
+                                <groupId>com.github.binarywang</groupId>
+                                <artifactId>weixin-java-miniapp</artifactId>
+                                <version>${weixin-java.version}</version>
+                            </dependency>
+
+                            <dependency>
+                                <groupId>com.github.binarywang</groupId>
+                                <artifactId>weixin-java-pay</artifactId>
+                                <version>${weixin-java.version}</version>
+                            </dependency>-->
+
+            <!-- redisson 分布式锁 -->
+            <!--              <dependency>
+                              <groupId>org.redisson</groupId>
+                              <artifactId>redisson-spring-boot-starter</artifactId>
+                              <version>${redisson.version}</version>
+                          </dependency>-->
+
+            <dependency>
+                <groupId>com.rookie.bigdata</groupId>
+                <artifactId>rookie-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-core</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-mybatis</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-rabbitmq</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-redis</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-web</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-security</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-seata</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-apidoc</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>common-sms</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--  <dependency>
+                  <groupId>com.aliyun</groupId>
+                  <artifactId>aliyun-java-sdk-core</artifactId>
+                  <version>${aliyun.java.sdk.core.version}</version>
+              </dependency>
+
+              <dependency>
+                  <groupId>com.aliyun</groupId>
+                  <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                  <version>${aliyun.java.sdk.dysmsapi.version}</version>
+              </dependency>
+
+              <dependency>
+                  <groupId>com.alibaba</groupId>
+                  <artifactId>easyexcel</artifactId>
+                  <version>${easyexcel.version}</version>
+              </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>system-api</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>oms-api</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>pms-api</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>ums-api</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--                <dependency>-->
+            <!--                    <groupId>com.youlai</groupId>-->
+            <!--                    <artifactId>sms-api</artifactId>-->
+            <!--                    <version>${project.version}</version>-->
+            <!--                </dependency>-->
+
+            <!--            <dependency>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </dependency>
+
+                        <dependency>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </dependency>
+
+                        <dependency>
+                            <groupId>com.aliyun.oss</groupId>
+                            <artifactId>aliyun-sdk-oss</artifactId>
+                            <version>${aliyun-sdk-oss.version}</version>
+                        </dependency>-->
+
+        </dependencies>
+    </dependencyManagement>
+
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- maven-compiler-plugin 插件，解决 Lombok + MapStruct 组合 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
