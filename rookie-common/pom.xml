@@ -16,6 +16,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>rookie-common-mybatis</module>
+        <module>rookie-common-mybatis-test</module>
         <module>rookie-core</module>
     </modules>
 

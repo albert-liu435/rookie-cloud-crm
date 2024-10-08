@@ -52,9 +52,9 @@
         <!-- Spring Cloud Alibaba版本号 -->
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
 
-
+        <mysql.version>8.0.28</mysql.version>
         <!-- 数据库 & ORM -->
-        <!--            <mysql.version>8.0.28</mysql.version>
+        <!--
                     <druid.version>1.2.20</druid.version>
                     <mybatis-plus.version>3.5.5</mybatis-plus.version>-->
 
@@ -101,11 +101,11 @@
             <version>${hutool.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.taobao.sdk</groupId>-->
-<!--            <artifactId>taobao-sdk-java</artifactId>-->
-<!--            <version>1555317847487-20240115</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.taobao.sdk</groupId>-->
+        <!--            <artifactId>taobao-sdk-java</artifactId>-->
+        <!--            <version>1555317847487-20240115</version>-->
+        <!--        </dependency>-->
 
     </dependencies>
 
@@ -127,6 +127,18 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>3.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
             <!-- API 接口文档 -->
             <!--
                             <dependency>
@@ -138,11 +150,6 @@
                             </dependency>
             -->
 
-            <!--                <dependency>
-                                <groupId>mysql</groupId>
-                                <artifactId>mysql-connector-java</artifactId>
-                                <version>${mysql.version}</version>
-                            </dependency>-->
 
             <!--                <dependency>
                                 <groupId>com.alibaba</groupId>
@@ -185,6 +192,12 @@
             <dependency>
                 <groupId>com.rookie.bigdata</groupId>
                 <artifactId>rookie-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.rookie.bigdata</groupId>
+                <artifactId>rookie-common-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -337,7 +350,6 @@
             </plugins>
         </pluginManagement>
     </build>
-
 
 
 </project>
