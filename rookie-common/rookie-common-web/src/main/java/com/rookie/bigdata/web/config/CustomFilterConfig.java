@@ -1,5 +1,7 @@
-package com.rookie.bigdata.web.filter;
+package com.rookie.bigdata.web.config;
 
+import com.rookie.bigdata.web.filter.IDFilter;
+import com.rookie.bigdata.web.filter.WrapperFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

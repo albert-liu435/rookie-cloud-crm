@@ -4,8 +4,8 @@
 
 
     <resultMap id="fansResultMap" type="com.rookie.bigdata.common.Fans">
-                <id column="id" property="id" />
-<!--        <id column="id" property="id" javaType="java.long.long" jdbcType=""></id>-->
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+        <!--        <id column="id" property="id" javaType="java.long.long" jdbcType=""></id>-->
         <!--        <result column="size_sku" property="sizeSku" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
         <!--        <result column="color_sku" property="colorSku" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
         <!--        <result column="product_sku" property="productSku" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
@@ -33,7 +33,8 @@
 
 
     <select id="getAll" resultMap="fansResultMap">
-        select * from crm.r_fans
+        select *
+        from crm.r_fans
     </select>
 
 </mapper>
