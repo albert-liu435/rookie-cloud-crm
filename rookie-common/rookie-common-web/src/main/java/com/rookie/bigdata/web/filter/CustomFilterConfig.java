@@ -1,7 +1,5 @@
-package com.rookie.bigdata.config;
+package com.rookie.bigdata.web.filter;
 
-import com.rookie.bigdata.filter.IDFilter;
-import com.rookie.bigdata.filter.WrapperFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Class CustomFilterConfig
- * @Description 自定义过滤器
+ * @Description
  * @Author rookie
- * @Date 2023/5/25 17:14
+ * @Date 2024/10/9 9:28
  * @Version 1.0
  */
 @Configuration
@@ -60,3 +58,4 @@ public class CustomFilterConfig {
     }
 
 }
+

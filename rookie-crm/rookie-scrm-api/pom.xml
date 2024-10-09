@@ -25,8 +25,9 @@
 
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.taobao.top</groupId>
+            <artifactId>taobao-sdk-java-auto-20241009</artifactId>
+      <!--      <version>1555317847487-20240115</version>-->
         </dependency>
 
         <dependency>
@@ -38,6 +39,10 @@
         <dependency>
             <groupId>com.rookie.bigdata</groupId>
             <artifactId>rookie-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rookie.bigdata</groupId>
+            <artifactId>rookie-common-web</artifactId>
         </dependency>
 
         <!-- Spring Cloud & Alibaba -->

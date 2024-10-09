@@ -200,6 +200,11 @@
                 <artifactId>rookie-common-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.rookie.bigdata</groupId>
+                <artifactId>rookie-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--                <dependency>-->
             <!--                    <groupId>com.youlai</groupId>-->
@@ -321,6 +326,21 @@
                             <version>${aliyun-sdk-oss.version}</version>
                         </dependency>-->
 
+            <dependency>
+                <groupId>com.taobao.top</groupId>
+                <artifactId>taobao-sdk-java-auto-20241009</artifactId>
+                <version>1555317847487-20240115</version>
+            </dependency>
+<!--            <dependency>
+                <groupId>com.vip</groupId>
+                <artifactId>osp-sdk</artifactId>
+                <version>20221129181441</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vip</groupId>
+                <artifactId>vop-sdk</artifactId>
+                <version>20221129181441</version>
+            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -351,5 +371,12 @@
         </pluginManagement>
     </build>
 
-
+    <repositories>
+        <repository>
+            <id>bestseller-releases</id>
+            <name>RookieNexus Release Repository</name>
+            <!--其中bestsellerchina为你自己的账号或者组织，在创建仓库的时候你可以看到-->
+            <url>https://raw.github.com/albert-liu435/maven_repo/main</url>
+        </repository>
+    </repositories>
 </project>

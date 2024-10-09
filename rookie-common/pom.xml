@@ -18,6 +18,7 @@
     <modules>
         <module>rookie-common-mybatis</module>
         <module>rookie-common-mybatis-test</module>
+        <module>rookie-common-web</module>
         <module>rookie-core</module>
     </modules>
 
