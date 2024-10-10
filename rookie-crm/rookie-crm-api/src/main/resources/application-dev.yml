@@ -1,26 +1,45 @@
-#server:
-#  port: 18084
-#
-#spring:
-#  application:
-#    name: rookie-nacos-config
-#  cloud:
-#    nacos:
-#      config:
-#        serverAddr: 81.70.241.167:8848
-#        username: 'nacos'
-#        password: 'nacos123'
-#  config:
-#    import:
+server:
+  port: 8083
+
+spring:
+  application:
+    name: rookie-crm-api
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 81.70.241.167:8848
+        fail-fast: true
+        username: 'nacos'
+        password: 'nacos123'
+      config:
+        serverAddr: 81.70.241.167:8848
+        username: 'nacos'
+        password: 'nacos123'
+  #        file-extension: yaml
+  #        shared-configs:
+  #          - data-id: rookie-common.yaml
+  #            refresh: true
+  #        import-check:
+  #          enabled: false
+  #        group: DEFAULT_GROUP
+  config:
+    import:
+      - nacos:rookie-common.yaml?refreshEnabled=true
+#      - nacos:rookie-gateway.yaml?refreshEnabled=true
 #      - nacos:nacos-config-example.properties?refreshEnabled=true
-#management:
-#  endpoint:
-#    health:
-#      show-details: always
-#  endpoints:
-#    web:
-#      exposure:
-#        include: '*'
-##logging:
-##  level:
-##    com.alibaba.cloud.nacos.configdata: debug
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+
+
+

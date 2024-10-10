@@ -1,9 +1,9 @@
 server:
-  port: 8082
+  port: 8081
 
 spring:
   application:
-    name: rookie-scrm-api
+    name: rookie-crm-web
   cloud:
     nacos:
       discovery:
@@ -15,15 +15,20 @@ spring:
         serverAddr: 81.70.241.167:8848
         username: 'nacos'
         password: 'nacos123'
-        file-extension: properties
-        shared-configs:
-          - data-id: nacos-config-example.properties
-            refresh: true
-        import-check:
-          enabled: false
-#  config:
-#    import:
+  #        file-extension: yaml
+  #        shared-configs:
+  #          - data-id: rookie-common.yaml
+  #            refresh: true
+  #        import-check:
+  #          enabled: false
+  #        group: DEFAULT_GROUP
+  config:
+    import:
+      - nacos:rookie-common.yaml?refreshEnabled=true
+#      - nacos:rookie-gateway.yaml?refreshEnabled=true
 #      - nacos:nacos-config-example.properties?refreshEnabled=true
+
+
 management:
   endpoint:
     health:
@@ -34,30 +39,6 @@ management:
         include: '*'
 
 
-#server:
-#  port: 8802
-#
-#spring:
-#  main:
-#    allow-circular-references: true
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant_path_matcher
-#  cloud:
-#    nacos:
-#      # 注册中心
-#      discovery:
-#        server-addr: http://localhost:8848
-#      # 配置中心
-#      config:
-#        # 本地启动
-#        ## server-addr: ${spring.cloud.nacos.discovery.server-addr}
-#        # 极速启动
-#        server-addr: http://localhost:8848
-#        file-extension: yaml
-#        shared-configs[0]:
-#          data-id: youlai-common.yaml
-#          refresh: true
 
 
 
