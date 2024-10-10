@@ -1,6 +1,6 @@
 package com.rookie.bigdata.domain.taobao;
 
-//import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ public class TaoBaoBindQueryResponse implements Serializable {
 
 //    是否可以绑定代码，见错误码定义，SUC:可绑定,bindable值为true；E01:会员不存在；E02:会员已被绑定；E04:会员不存在，可注册；E05:系统繁忙或异常，可重试；其他原因可传F01，F02等，系统统一识别为会员不存在
 
-//    @SerializedName("bind_code")
+    @SerializedName("bind_code")
     private String bindCode; //必填 以下为不能绑定的代码，如果可绑定返回SUC(需返回明文手机号)。 E01:会员不存在 E02:会员已被绑定 E04:会员不存在，可注册 E05:系统繁忙或异常，可重试 其他原因可传F01，F02等， 系统统一识别为会员不存在
 
 

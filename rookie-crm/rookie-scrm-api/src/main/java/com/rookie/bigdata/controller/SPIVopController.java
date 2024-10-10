@@ -1,7 +1,7 @@
 package com.rookie.bigdata.controller;
 
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
 import com.rookie.bigdata.domain.vop.VopMember;
 import com.rookie.bigdata.enums.SPIVopEnum;
@@ -26,10 +26,10 @@ import java.util.Map;
 public class SPIVopController {
 
 
-//    private final Gson gson = new GsonBuilder()
-//            // .setPrettyPrinting()
-//            .disableHtmlEscaping()
-//            .create();
+    private final Gson gson = new GsonBuilder()
+            // .setPrettyPrinting()
+            .disableHtmlEscaping()
+            .create();
 
 
     /**
@@ -39,7 +39,7 @@ public class SPIVopController {
      * @return
      */
     @RequestMapping("/queryBind")
-    public VopBindQueryResponse vopQueryBind(@RequestParam Map<String, Object> params) {
+    public String vopQueryBind(@RequestParam Map<String, Object> params) {
 
         VopBindQueryResponse<VopMember> vopBindQueryResponse = new VopBindQueryResponse<VopMember>();
         vopBindQueryResponse.setCode(SPIVopEnum.E99.getCode());
@@ -64,7 +64,9 @@ public class SPIVopController {
 //
 //        return ngson.toJson(queryBindOut);
 
-        return vopBindQueryResponse;
+        return gson.toJson(vopBindQueryResponse);
+
+//        return vopBindQueryResponse;
 
     }
 
