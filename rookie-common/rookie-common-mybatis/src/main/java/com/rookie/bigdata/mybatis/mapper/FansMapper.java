@@ -13,5 +13,10 @@ import java.util.List;
  */
 public interface FansMapper {
 
+    /**
+     * 查询所有的粉丝信息
+     *
+     * @return
+     */
     List<Fans> getAll();
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rookie.bigdata.mybatis.mapper.AppMapper">
+
+
+    <resultMap id="appResultMap" type="com.rookie.bigdata.common.App">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+        <!--        <id column="id" property="id" javaType="java.long.long" jdbcType=""></id>-->
+        <!--        <result column="size_sku" property="sizeSku" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="color_sku" property="colorSku" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="product_sku" property="productSku" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="goods_name_cn" property="goodsNameCn" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="goods_info" property="goodsInfo" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="category_name" property="categoryName" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="color_name" property="colorName" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="retail_price" property="retailPrice" jdbcType="NUMERIC" javaType="java.math.BigDecimal"/>-->
+        <!--        <result column="discount_price" property="discountPrice" jdbcType="NUMERIC" javaType="java.math.BigDecimal"/>-->
+        <!--        <result column="discount" property="discount" jdbcType="NUMERIC" javaType="java.math.BigDecimal"/>-->
+        <!--        <result column="currency" property="currency" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+
+
+        <!--        <result column="click_rate" property="clickRate" jdbcType="INTEGER" javaType="java.lang.Integer"/>-->
+
+        <!--        <result column="picture_path" property="picturePath" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="img_source" property="imgSource" jdbcType="TINYINT" javaType="java.lang.Integer"/>-->
+        <!--        <result column="source" property="source" jdbcType="TINYINT" javaType="java.lang.Integer"/>-->
+        <!--        <result column="brand_id" property="brandId" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
+        <!--        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>-->
+        <!--        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>-->
+
+
+    </resultMap>
+
+
+    <select id="getAll" resultMap="appResultMap">
+        select *
+        from crm.r_app
+    </select>
+
+    <select id="getAppByType" resultMap="appResultMap">
+        select *
+        from crm.r_app
+        where p_type = #{type}
+        order by create_time desc limit 1;
+    </select>
+
+</mapper>
