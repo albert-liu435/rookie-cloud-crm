@@ -95,18 +95,11 @@
             <version>${lombok.version}</version>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
-        </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>com.taobao.sdk</groupId>-->
-        <!--            <artifactId>taobao-sdk-java</artifactId>-->
-        <!--            <version>1555317847487-20240115</version>-->
-        <!--        </dependency>-->
-
+        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -138,7 +131,11 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
             <!-- API 接口文档 -->
             <!--
                             <dependency>

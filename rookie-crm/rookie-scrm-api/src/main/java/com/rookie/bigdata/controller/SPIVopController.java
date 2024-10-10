@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 /**
  * @Class SPIVopController
  * @Description
@@ -19,13 +20,38 @@ import org.springframework.web.bind.annotation.RestController;
 public class SPIVopController {
 
 
-
     private final Gson gson = new GsonBuilder()
             // .setPrettyPrinting()
             .disableHtmlEscaping()
             .create();
 
 
+    /**
+     * 绑定查询
+     *
+     * @param params
+     * @return
+     */
+//    @RequestMapping("/queryBind")
+//    public String vopQueryBind(@RequestParam Map<String, Object> params) {
+//
+//        QueryBindOut queryBindOut = new QueryBindOut();
+//        queryBindOut.setCode(VopMemEnum.MEM_E99.getCode());
+//        queryBindOut.setMessage(VopMemEnum.MEM_E99.getMsg());
+//        QueryBindOut.Content content = new QueryBindOut.Content();
+//        content.setBind_able(false);
+//        queryBindOut.setContent(content);
+//
+//        try {
+//            queryBindOut = vopService.vopQueryBind(params);
+//        } catch (Exception e) {
+//            //系统抛出异常
+//            logger.error("vop query queryBind {}", e.getMessage());
+//        }
+//
+//        return ngson.toJson(queryBindOut);
+//
+//    }
 
 
 }
