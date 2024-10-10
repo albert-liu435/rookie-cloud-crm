@@ -26,13 +26,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <!--取消jackson-->
+<!--            <exclusions>
                 <exclusion>
                     <artifactId>jackson-databind</artifactId>
                     <groupId>com.fasterxml.jackson.core</groupId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -40,10 +39,10 @@
             <artifactId>rookie-core</artifactId>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

@@ -1,7 +1,7 @@
 package com.rookie.bigdata.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+/*import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;*/
 import com.rookie.bigdata.domain.taobao.TaoBaoBindQueryRequest;
 import com.rookie.bigdata.domain.taobao.TaoBaoBindQueryResponse;
 import com.rookie.bigdata.service.SPITaoBaoServer;
@@ -26,10 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class SPITaoBaoController {
 
 
+/*
     private final Gson gson = new GsonBuilder()
             // .setPrettyPrinting()
             .disableHtmlEscaping()
             .create();
+*/
 
     @Autowired
     private SPITaoBaoServer taoBaoServer;
@@ -45,11 +47,11 @@ public class SPITaoBaoController {
         //获取请求体消息
         String jsonBody = RequestUtils.getJsonBody();
 
-        log.info("淘宝new绑定查询请求消息:{}", gson.toJson(jsonBody));
+//        log.info("淘宝new绑定查询请求消息:{}", gson.toJson(jsonBody));
         // 进行绑定查询
 
         TaoBaoBindQueryResponse bindQueryResponse = taoBaoServer.bindquery(taoBaoBindQuery);
-        log.info("淘宝绑定查询请求返回消息:{}", gson.toJson(bindQueryResponse));
+//        log.info("淘宝绑定查询请求返回消息:{}", gson.toJson(bindQueryResponse));
 
         return bindQueryResponse;
     }

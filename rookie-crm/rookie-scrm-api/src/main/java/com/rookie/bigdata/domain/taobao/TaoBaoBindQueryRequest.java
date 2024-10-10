@@ -1,6 +1,6 @@
 package com.rookie.bigdata.domain.taobao;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -20,15 +20,15 @@ public class TaoBaoBindQueryRequest implements Serializable {
     // \"mix_mobile\":\"bb00b08174cd00b55ef948f04cd808e7\"}"
 
 
-    @SerializedName("seller_name")
+//    @SerializedName("seller_name")
     private String sellerName; //卖家昵称
 
-    @SerializedName("open_id")
+//    @SerializedName("open_id")
     private String openId;
-    @SerializedName("union_id")
+//    @SerializedName("union_id")
     private String unionId;
 
-    @SerializedName("mix_mobile")
+//    @SerializedName("mix_mobile")
     private String mixMobile; //默认密文手机号码
 
     private String ouid;//淘宝买家在当前店铺的唯一标识

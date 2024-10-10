@@ -1,10 +1,16 @@
 package com.rookie.bigdata.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
+import com.rookie.bigdata.domain.vop.VopMember;
+import com.rookie.bigdata.enums.SPIVopEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 
 /**
@@ -20,10 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class SPIVopController {
 
 
-    private final Gson gson = new GsonBuilder()
-            // .setPrettyPrinting()
-            .disableHtmlEscaping()
-            .create();
+//    private final Gson gson = new GsonBuilder()
+//            // .setPrettyPrinting()
+//            .disableHtmlEscaping()
+//            .create();
 
 
     /**
@@ -32,13 +38,20 @@ public class SPIVopController {
      * @param params
      * @return
      */
-//    @RequestMapping("/queryBind")
-//    public String vopQueryBind(@RequestParam Map<String, Object> params) {
-//
-//        QueryBindOut queryBindOut = new QueryBindOut();
-//        queryBindOut.setCode(VopMemEnum.MEM_E99.getCode());
-//        queryBindOut.setMessage(VopMemEnum.MEM_E99.getMsg());
-//        QueryBindOut.Content content = new QueryBindOut.Content();
+    @RequestMapping("/queryBind")
+    public VopBindQueryResponse vopQueryBind(@RequestParam Map<String, Object> params) {
+
+        VopBindQueryResponse<VopMember> vopBindQueryResponse = new VopBindQueryResponse<VopMember>();
+        vopBindQueryResponse.setCode(SPIVopEnum.E99.getCode());
+        vopBindQueryResponse.setMessage(SPIVopEnum.E99.getMsg());
+
+
+        VopMember vopMember=new VopMember();
+        vopMember.setBindAble(true);
+        vopMember.setMemberNo("1234abc");
+        vopBindQueryResponse.setContent(vopMember);
+
+//        vopBindQueryResponse.Content content = new QueryBindOut.Content();
 //        content.setBind_able(false);
 //        queryBindOut.setContent(content);
 //
@@ -50,8 +63,10 @@ public class SPIVopController {
 //        }
 //
 //        return ngson.toJson(queryBindOut);
-//
-//    }
+
+        return vopBindQueryResponse;
+
+    }
 
 
 }
