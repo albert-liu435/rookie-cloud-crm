@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rookie.bigdata.mybatis.mapper.AppMapper">
+<mapper namespace="com.rookie.bigdata.mybatis.mapper.BrandMapper">
 
 
-    <resultMap id="appResultMap" type="com.rookie.bigdata.common.App">
+    <resultMap id="appResultMap" type="com.rookie.bigdata.common.Brand">
         <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
-        <result column="app_key" property="appKey" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="app_secret" property="appSecret" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="app_token" property="appToken" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="app_refreshtoken" property="appRefreshtoken" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="brand" property="brand" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="p_type" property="type" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="token_expires_time" property="tokenExpiresTime" jdbcType="TIMESTAMP"
-                javaType="java.time.LocalDateTime"/>
-        <result column="refreshtoken_expires_time" property="refreshtokenExpiresTime" jdbcType="TIMESTAMP"
-                javaType="java.time.LocalDateTime"/>
+        <result column="brand_code" property="brandCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
         <!--        <result column="retail_price" property="retailPrice" jdbcType="NUMERIC" javaType="java.math.BigDecimal"/>-->
@@ -38,22 +30,8 @@
 
     <select id="getAll" resultMap="appResultMap">
         select *
-        from crm.r_app
+        from crm.r_brand
     </select>
 
-    <select id="getAppByType" resultMap="appResultMap">
-        select *
-        from crm.r_app
-        where p_type = #{type}
-        order by create_time desc limit 1;
-    </select>
-
-
-    <select id="getAllAppByType" resultMap="appResultMap">
-        select *
-        from crm.r_app
-        where p_type = #{type}
-
-    </select>
 
 </mapper>

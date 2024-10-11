@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
 import com.rookie.bigdata.domain.vop.VopMember;
 import com.rookie.bigdata.enums.SPIVopEnum;
+import com.rookie.bigdata.service.SPIVopServer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,10 @@ import java.util.Map;
 @RequestMapping("spi/vop")
 @Slf4j
 public class SPIVopController {
+
+
+    @Autowired
+    private SPIVopServer spiVopServer;
 
 
     private final Gson gson = new GsonBuilder()
@@ -46,23 +52,23 @@ public class SPIVopController {
         vopBindQueryResponse.setMessage(SPIVopEnum.E99.getMsg());
 
 
-        VopMember vopMember=new VopMember();
-        vopMember.setBindAble(true);
-        vopMember.setMemberNo("1234abc");
-        vopBindQueryResponse.setContent(vopMember);
+//        VopMember vopMember=new VopMember();
+//        vopMember.setBindAble(true);
+//        vopMember.setMemberNo("1234abc");
+//        vopBindQueryResponse.setContent(vopMember);
 
 //        vopBindQueryResponse.Content content = new QueryBindOut.Content();
 //        content.setBind_able(false);
 //        queryBindOut.setContent(content);
 //
-//        try {
-//            queryBindOut = vopService.vopQueryBind(params);
-//        } catch (Exception e) {
-//            //系统抛出异常
-//            logger.error("vop query queryBind {}", e.getMessage());
-//        }
-//
-//        return ngson.toJson(queryBindOut);
+        try {
+            vopBindQueryResponse = spiVopServer.vopQueryBind(params);
+        } catch (Exception e) {
+            //系统抛出异常
+            log.error("vop query queryBind {}", e.getMessage());
+        }
+
+
 
         return gson.toJson(vopBindQueryResponse);
 

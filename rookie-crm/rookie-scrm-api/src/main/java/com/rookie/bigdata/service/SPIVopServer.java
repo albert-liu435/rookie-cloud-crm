@@ -1,7 +1,10 @@
 package com.rookie.bigdata.service;
 
-import com.rookie.bigdata.domain.taobao.TaoBaoBindQueryRequest;
-import com.rookie.bigdata.domain.taobao.TaoBaoBindQueryResponse;
+
+import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
+import com.rookie.bigdata.domain.vop.VopMember;
+
+import java.util.Map;
 
 /**
  * @Class SPITaoBaoServer
@@ -14,5 +17,11 @@ import com.rookie.bigdata.domain.taobao.TaoBaoBindQueryResponse;
 public interface SPIVopServer {
 
 
-
+    /**
+     * 进行会员和粉丝的查询
+     *
+     * @param params
+     * @return
+     */
+    VopBindQueryResponse<VopMember> vopQueryBind(Map<String, Object> params);
 }

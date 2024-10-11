@@ -56,3 +56,17 @@ COLLATE=utf8mb4_general_ci
 COMMENT='系统应用表';
 ALTER TABLE crm.r_app ADD p_type VARCHAR(50);
 
+
+
+CREATE TABLE crm.r_brand (
+                            id int(11) NOT NULL AUTO_INCREMENT COMMENT '唯一自增ID',
+                            brand_code  varchar(50) DEFAULT NULL COMMENT '品牌编码',
+                            create_time datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                            update_time datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+                            PRIMARY KEY (`id`)
+)
+    ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_general_ci
+COMMENT='品牌表';
+

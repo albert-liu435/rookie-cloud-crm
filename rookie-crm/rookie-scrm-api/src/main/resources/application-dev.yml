@@ -25,7 +25,7 @@ spring:
   config:
     import:
       - nacos:rookie-common.yaml?refreshEnabled=true
-#      - nacos:rookie-gateway.yaml?refreshEnabled=true
+      - nacos:rookie-scrm.yaml?refreshEnabled=true
 #      - nacos:nacos-config-example.properties?refreshEnabled=true
 
 

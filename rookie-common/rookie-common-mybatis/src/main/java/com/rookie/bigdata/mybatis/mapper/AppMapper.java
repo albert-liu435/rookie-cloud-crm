@@ -26,5 +26,7 @@ public interface AppMapper {
 
     App getAppByType(@Param("type") String type);
 
+    List<App> getAllAppByType(String type);
+
 //    int deleteByCreateTime(@Param("sesstionDate") LocalDateTime sesstionDate);
 }

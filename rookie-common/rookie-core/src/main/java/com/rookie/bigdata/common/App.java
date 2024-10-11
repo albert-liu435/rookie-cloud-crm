@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 /**
  * @Class App
- * @Description
+ * @Description 应用系统信息
  * @Author rookie
  * @Date 2024/10/10 11:34
  * @Version 1.0
@@ -28,9 +28,9 @@ public class App implements Serializable {
     //品牌
     private String brand;
     //token过期时间
-    private LocalDateTime token_expires_time;
+    private LocalDateTime tokenExpiresTime;
     //refreshtoken过期时间
-    private LocalDateTime refreshtoken_expires_time;
+    private LocalDateTime refreshtokenExpiresTime;
 
     //1:唯品会应用
     private String type;
