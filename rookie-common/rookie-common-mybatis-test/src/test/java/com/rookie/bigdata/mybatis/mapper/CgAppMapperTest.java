@@ -1,8 +1,6 @@
-package com.rookie.bigdata.mybatis.service.impl;
+package com.rookie.bigdata.mybatis.mapper;
 
-import com.rookie.bigdata.common.App;
-import com.rookie.bigdata.common.Fans;
-import com.rookie.bigdata.mybatis.service.AppService;
+import com.rookie.bigdata.common.CgApp;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +11,29 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 /**
- * @Class AppServiceImplTest
+ * @Class AppMapperTest
  * @Description
  * @Author rookie
- * @Date 2024/10/11 9:33
+ * @Date 2024/10/10 11:48
  * @Version 1.0
  */
 @SpringBootTest
 @ActiveProfiles("dev")
 //@AutoConfigureMockMvc
 @Slf4j
-class AppServiceImplTest {
-
+class CgAppMapperTest {
 
     @Autowired
-    private AppService appService;
-
+    private CgAppMapper appMapper;
 
     @Test
-    void getAllAppByType() {
+    void getAll() {
 
-        List<App> allAppByType = appService.getAllAppByType("1");
-        for (App app : allAppByType) {
-            log.info("获取的所有的app:{}", app.toString());
-        }
+        List<CgApp> all = appMapper.getAll();
+        log.info("获取的数据条数：{}", all.size());
+    }
+
+    @Test
+    void getAppByType() {
     }
 }

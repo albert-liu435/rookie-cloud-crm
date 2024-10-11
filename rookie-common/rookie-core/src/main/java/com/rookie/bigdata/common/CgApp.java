@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @Version 1.0
  */
 @Data
-public class App implements Serializable {
+public class CgApp implements Serializable {
 
     //唯一ID
     private long id;

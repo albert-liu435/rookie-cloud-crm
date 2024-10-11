@@ -1,11 +1,15 @@
 package com.rookie.bigdata.service.impl;
 
+import com.rookie.bigdata.common.MbBrand;
 import com.rookie.bigdata.config.VopComServiceConfig;
 import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
 import com.rookie.bigdata.domain.vop.VopMember;
 import com.rookie.bigdata.enums.SPIVopEnum;
+import com.rookie.bigdata.mybatis.service.MbBrandService;
 import com.rookie.bigdata.service.SPIVopServer;
 import com.rookie.bigdata.service.VopClientService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,9 +25,16 @@ import java.util.Map;
 
 
 @Service
+@Slf4j
 public class SPIVopServerImpl implements SPIVopServer {
+
+
+    @Autowired
+    private MbBrandService brandService;
+
+
     @Override
-    public VopBindQueryResponse<VopMember> vopQueryBind(Map<String, Object> params) {
+    public VopBindQueryResponse<VopMember> vopQueryBind(Map<String, Object> params) throws Exception {
 
         VopBindQueryResponse<VopMember> vopBindQueryResponse = new VopBindQueryResponse<VopMember>();
         //系统异常
@@ -31,29 +42,34 @@ public class SPIVopServerImpl implements SPIVopServer {
         vopBindQueryResponse.setMessage(SPIVopEnum.E06.getMsg());
         VopMember vopMember = new VopMember();
         vopMember.setBindAble(false);
-//        vopMember.setMemberNo("1234abc");
         vopBindQueryResponse.setContent(vopMember);
 
         //获取品牌
-        String brand = (String) params.get("brand_identify");
+        String brandCode = (String) params.get("brand_identify");
         //获取service进行认证及其他信息
-        VopClientService vopClientService = VopComServiceConfig.getVopClientService(brand);
+        VopClientService vopClientService = VopComServiceConfig.getVopClientService(brandCode);
 
         String receivedSig = (String) params.remove("sign");
         //进行验签,如果验签通过后则进行品牌查询
         boolean flag = vopClientService.verifySign(params, receivedSig);
 
-        //TODO 查询品牌信息
+        // 查询品牌信息
+        MbBrand brand = brandService.getBrandByCode(brandCode);
+
+        if (flag) {
+            //校验通过
+            //需要将手机号进行解密
+            String paramPhone = (String) params.get("mix_mobile");
+            //明文手机号
+            String phone = vopClientService.decrypt(paramPhone);
+            //TODO 根据手机号和品牌查询会员信息是否存在
+
+
+        }
 
 
         return null;
-//        QueryBindOut queryBindOut = new QueryBindOut();
-//        queryBindOut.setCode(VopMemEnum.MEM_E06.getCode());
-//        queryBindOut.setMessage(VopMemEnum.MEM_E06.getMsg());
-//        QueryBindOut.Content content = new QueryBindOut.Content();
-//        content.setBind_able(false);
-//        queryBindOut.setContent(content);
-//
+
 //        //获取sign,然后根据sign校验params,校验通过后执行其他操作，如查询等操作
 //        String brandIdentify = (String) params.get("brand_identify");
 //        VopTokenService vopTokenService = VopComServiceConfig.getVopTokenService(brandIdentify);

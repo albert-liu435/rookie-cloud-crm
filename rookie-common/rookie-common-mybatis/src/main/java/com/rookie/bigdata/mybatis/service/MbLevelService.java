@@ -1,11 +1,11 @@
 package com.rookie.bigdata.mybatis.service;
 
 /**
- * @Class BrandService
+ * @Class MbLevelService
  * @Description
  * @Author rookie
- * @Date 2024/10/11 9:57
+ * @Date 2024/10/11 17:02
  * @Version 1.0
  */
-public interface BrandService {
+public interface MbLevelService {
 }

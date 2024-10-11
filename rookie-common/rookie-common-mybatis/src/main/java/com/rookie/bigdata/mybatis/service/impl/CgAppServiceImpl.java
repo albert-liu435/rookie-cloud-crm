@@ -1,8 +1,9 @@
 package com.rookie.bigdata.mybatis.service.impl;
 
-import com.rookie.bigdata.common.App;
-import com.rookie.bigdata.mybatis.mapper.AppMapper;
-import com.rookie.bigdata.mybatis.service.AppService;
+import com.rookie.bigdata.common.CgApp;
+
+import com.rookie.bigdata.mybatis.mapper.CgAppMapper;
+import com.rookie.bigdata.mybatis.service.CgAppService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,13 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class AppServiceImpl implements AppService {
+public class CgAppServiceImpl implements CgAppService {
 
     @Autowired
-    private AppMapper appMapper;
+    private CgAppMapper appMapper;
 
     @Override
-    public List<App> getAllAppByType(String type) {
+    public List<CgApp> getAllAppByType(String type) {
         return appMapper.getAllAppByType(type);
     }
 }

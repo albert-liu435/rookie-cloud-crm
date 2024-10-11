@@ -3,6 +3,7 @@ package com.rookie.bigdata.service.impl;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.rookie.bigdata.service.VopClientService;
+import com.rookie.bigdata.util.VopAesEncryptUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -44,4 +45,16 @@ public class VopClientServiceImpl implements VopClientService {
 
         return md5Str32Upper.equals(receivedSig);
     }
+
+
+
+
+    @Override
+    public String decrypt(String source) throws Exception {
+
+        return VopAesEncryptUtils.decrypt(source, this.appKey);
+    }
+
+
+
 }

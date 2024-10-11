@@ -51,7 +51,6 @@
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <!-- Spring Cloud Alibaba版本号 -->
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
-
         <mysql.version>8.0.28</mysql.version>
         <!-- 数据库 & ORM -->
         <!--
@@ -66,6 +65,7 @@
         <!--            <mapstruct.version>1.5.5.Final</mapstruct.version>-->
         <mapstruct.version>1.6.2</mapstruct.version>
         <hutool.version>5.8.32</hutool.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
 
         <!--            <hutool.version>5.8.26</hutool.version>
 
@@ -94,12 +94,6 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
-
-<!--        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -136,6 +130,14 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
             <!-- API 接口文档 -->
             <!--
                             <dependency>

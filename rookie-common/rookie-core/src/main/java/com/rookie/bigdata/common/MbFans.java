@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @Version 1.0
  */
 @Data
-public class Fans implements Serializable {
+public class MbFans implements Serializable {
 
     private long id;
 

@@ -1,7 +1,7 @@
 package com.rookie.bigdata.config;
 
-import com.rookie.bigdata.common.App;
-import com.rookie.bigdata.mybatis.service.AppService;
+import com.rookie.bigdata.common.CgApp;
+import com.rookie.bigdata.mybatis.service.CgAppService;
 import com.rookie.bigdata.service.VopClientService;
 import com.rookie.bigdata.service.impl.VopClientServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class VopComServiceConfig implements InitializingBean {
 
 
     @Autowired
-    private AppService appService;
+    private CgAppService appService;
 
     private static Map<String, VopClientService> mapVopClientService;
 
@@ -35,8 +35,8 @@ public class VopComServiceConfig implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
         mapVopClientService = new HashMap<>();
-        List<App> allApp = appService.getAllAppByType("1");
-        for (App app : allApp) {
+        List<CgApp> allApp = appService.getAllAppByType("1");
+        for (CgApp app : allApp) {
             //TODO 根据app信息创建VopClientService对象
 
             VopClientService vopClientService = new VopClientServiceImpl(app.getAppKey(), app.getAppSecret(), app.getAppToken(), app.getBrand());

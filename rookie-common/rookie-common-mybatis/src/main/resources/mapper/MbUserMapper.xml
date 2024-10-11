@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rookie.bigdata.mybatis.mapper.MbUserMapper">
+
+
+    <resultMap id="mbUserResultMap" type="com.rookie.bigdata.common.MbUser">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+
+        <result column="phone" property="phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="level_no" property="levelNo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="level_name" property="levelName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="brand_code" property="brandCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="reg_channel" property="regChannel" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="reg_su_channel" property="regSubChannel" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="reg_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+        <result column="birthday" property="birthday" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="email" property="email" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="point" property="point" jdbcType="INTEGER" javaType="int"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime"/>
+
+
+    </resultMap>
+
+
+    <select id="getAll" resultMap="mbUserResultMap">
+        select *
+        from crm.mb_user
+    </select>
+
+</mapper>

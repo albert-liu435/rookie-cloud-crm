@@ -19,4 +19,14 @@ public interface VopClientService {
      * @return
      */
     boolean verifySign(Map<String, Object> params, String receivedSig);
+
+
+    /**
+     * 对手机号进行解析成明文手机号
+     *
+     * @param source
+     * @return
+     * @throws Exception
+     */
+    String decrypt(String source) throws Exception;
 }

@@ -23,5 +23,5 @@ public interface SPIVopServer {
      * @param params
      * @return
      */
-    VopBindQueryResponse<VopMember> vopQueryBind(Map<String, Object> params);
+    VopBindQueryResponse<VopMember> vopQueryBind(Map<String, Object> params) throws Exception;
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rookie.bigdata.mybatis.mapper.AppMapper">
+<mapper namespace="com.rookie.bigdata.mybatis.mapper.CgAppMapper">
 
 
-    <resultMap id="appResultMap" type="com.rookie.bigdata.common.App">
+    <resultMap id="cgAppResultMap" type="com.rookie.bigdata.common.CgApp">
         <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
         <result column="app_key" property="appKey" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <result column="app_secret" property="appSecret" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -36,22 +36,22 @@
     </resultMap>
 
 
-    <select id="getAll" resultMap="appResultMap">
+    <select id="getAll" resultMap="cgAppResultMap">
         select *
-        from crm.r_app
+        from crm.cg_app
     </select>
 
-    <select id="getAppByType" resultMap="appResultMap">
+    <select id="getAppByType" resultMap="cgAppResultMap">
         select *
-        from crm.r_app
+        from crm.cg_app
         where p_type = #{type}
         order by create_time desc limit 1;
     </select>
 
 
-    <select id="getAllAppByType" resultMap="appResultMap">
+    <select id="getAllAppByType" resultMap="cgAppResultMap">
         select *
-        from crm.r_app
+        from crm.cg_app
         where p_type = #{type}
 
     </select>

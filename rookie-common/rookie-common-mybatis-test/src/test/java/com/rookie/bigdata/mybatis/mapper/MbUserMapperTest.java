@@ -1,39 +1,35 @@
 package com.rookie.bigdata.mybatis.mapper;
 
-import com.rookie.bigdata.common.App;
+import com.rookie.bigdata.common.MbUser;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 /**
- * @Class AppMapperTest
+ * @Class MbUserMapperTest
  * @Description
  * @Author rookie
- * @Date 2024/10/10 11:48
+ * @Date 2024/10/11 16:47
  * @Version 1.0
  */
 @SpringBootTest
 @ActiveProfiles("dev")
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 @Slf4j
-class AppMapperTest {
+class MbUserMapperTest {
 
     @Autowired
-    private AppMapper appMapper;
+    private MbUserMapper mbUserMapper;
 
     @Test
     void getAll() {
-
-        List<App> all = appMapper.getAll();
-        log.info("获取的数据条数：{}",all.size());
-    }
-
-    @Test
-    void getAppByType() {
+        List<MbUser> all = mbUserMapper.getAll();
+        for (MbUser mbUser : all) {
+            log.info("获取的用户信息为：{}", mbUser.toString());
+        }
     }
 }
