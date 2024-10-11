@@ -7,6 +7,7 @@
         <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
 
         <result column="phone" property="phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="member_no" property="memberNo" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <result column="level_no" property="levelNo" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <result column="level_name" property="levelName" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <result column="brand_code" property="brandCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -27,6 +28,19 @@
     <select id="getAll" resultMap="mbUserResultMap">
         select *
         from crm.mb_user
+    </select>
+
+    <select id="getMbUserByMap" resultMap="mbUserResultMap" resultType="java.util.Map">
+        select *
+        from crm.mb_user
+        where 1=1
+        <if test="phone!=null and phone!=''">
+            and phone = #{phone}
+        </if>
+        <if test="brandCode!=null and brandCode!=''">
+            and brand_code = #{brandCode}
+        </if>
+        limit 1
     </select>
 
 </mapper>

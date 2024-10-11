@@ -1,5 +1,6 @@
 package com.rookie.bigdata.mybatis.service.impl;
 
+import com.rookie.bigdata.common.MbFans;
 import com.rookie.bigdata.mybatis.mapper.MbFansMapper;
 import com.rookie.bigdata.mybatis.service.MbFansService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,4 +20,11 @@ public class MbFansServiceImpl implements MbFansService {
 
     @Autowired
     private MbFansMapper mbFansMapper;
+
+    @Override
+    public MbFans getMbFansByParams(String openId, long id, String type) {
+        //TODO 进行粉丝信息的查询
+
+        return null;
+    }
 }

@@ -50,30 +50,15 @@ public class SPIVopController {
         VopBindQueryResponse<VopMember> vopBindQueryResponse = new VopBindQueryResponse<VopMember>();
         vopBindQueryResponse.setCode(SPIVopEnum.E99.getCode());
         vopBindQueryResponse.setMessage(SPIVopEnum.E99.getMsg());
-
-
-//        VopMember vopMember=new VopMember();
-//        vopMember.setBindAble(true);
-//        vopMember.setMemberNo("1234abc");
-//        vopBindQueryResponse.setContent(vopMember);
-
-//        vopBindQueryResponse.Content content = new QueryBindOut.Content();
-//        content.setBind_able(false);
-//        queryBindOut.setContent(content);
-//
         try {
             vopBindQueryResponse = spiVopServer.vopQueryBind(params);
         } catch (Exception e) {
             //系统抛出异常
             log.error("vop query queryBind {}", e.getMessage());
         }
-
-
-
         return gson.toJson(vopBindQueryResponse);
 
 //        return vopBindQueryResponse;
-
     }
 
 

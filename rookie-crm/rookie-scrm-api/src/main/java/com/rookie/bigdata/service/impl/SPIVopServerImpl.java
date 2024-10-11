@@ -1,11 +1,15 @@
 package com.rookie.bigdata.service.impl;
 
 import com.rookie.bigdata.common.MbBrand;
+import com.rookie.bigdata.common.MbFans;
+import com.rookie.bigdata.common.MbUser;
 import com.rookie.bigdata.config.VopComServiceConfig;
 import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
 import com.rookie.bigdata.domain.vop.VopMember;
 import com.rookie.bigdata.enums.SPIVopEnum;
 import com.rookie.bigdata.mybatis.service.MbBrandService;
+import com.rookie.bigdata.mybatis.service.MbFansService;
+import com.rookie.bigdata.mybatis.service.MbUserService;
 import com.rookie.bigdata.service.SPIVopServer;
 import com.rookie.bigdata.service.VopClientService;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +35,12 @@ public class SPIVopServerImpl implements SPIVopServer {
 
     @Autowired
     private MbBrandService brandService;
+
+    @Autowired
+    private MbUserService mbUserService;
+
+    @Autowired
+    private MbFansService mbFansService;
 
 
     @Override
@@ -62,71 +72,41 @@ public class SPIVopServerImpl implements SPIVopServer {
             String paramPhone = (String) params.get("mix_mobile");
             //明文手机号
             String phone = vopClientService.decrypt(paramPhone);
-            //TODO 根据手机号和品牌查询会员信息是否存在
+            // 根据手机号和品牌查询会员信息是否存在
+            MbUser mbUser = mbUserService.getMbUserByParams(phone, brand.getBrandCode());
+            //会员信息不存在，说明可以进行注册
+            if (null == mbUser) {
+                vopBindQueryResponse.setCode(SPIVopEnum.E03.getCode());
+                vopBindQueryResponse.setMessage(SPIVopEnum.E03.getMsg());
+                vopMember.setBindAble(false);
+                return vopBindQueryResponse;
+            }
+            //会员信息存在，查询粉丝信息是否存在
+            String openId = (String) params.get("open_id");
+            //根据openid查询粉丝信息和会员信息
+            Map<String, Object> fansLeadMap = new HashMap<>();
+            fansLeadMap.put("accountGuid", mbUser.getId());
+            fansLeadMap.put("openId", openId);
+            fansLeadMap.put("type", "14");
+            MbFans mbFans = mbFansService.getMbFansByParams(openId, mbUser.getId(), "1");
 
+            //粉丝不存在，可以绑定
+            if (null == mbFans) {
+                vopBindQueryResponse.setCode(SPIVopEnum.E04.getCode());
+                vopBindQueryResponse.setMessage(SPIVopEnum.E04.getMsg());
+                //TODO 这里需要会员编号
+                vopMember.setBindAble(true);
 
+                vopMember.setMemberNo(mbUser.getMemberNo());
+                return vopBindQueryResponse;
+            }
+            //如果粉丝和会员都存在
+            vopBindQueryResponse.setCode(SPIVopEnum.E05.getCode());
+            vopBindQueryResponse.setMessage(SPIVopEnum.E05.getMsg());
+            vopMember.setBindAble(false);
+            return vopBindQueryResponse;
         }
+        return vopBindQueryResponse;
 
-
-        return null;
-
-//        //获取sign,然后根据sign校验params,校验通过后执行其他操作，如查询等操作
-//        String brandIdentify = (String) params.get("brand_identify");
-//        VopTokenService vopTokenService = VopComServiceConfig.getVopTokenService(brandIdentify);
-//        // 提取sig参数
-//        String receivedSig = (String) params.remove("sign");
-//        boolean flag = vopTokenService.verifySign(params, receivedSig);
-//        String brandCode = vopTokenService.getBrandCode();
-//        // 判断校验是否通过
-//        if (flag) {
-//            //渠道和子渠道分别为 VIP VipMember
-//            //根据品牌查询品牌信息
-//            Brand brand = brandService.getBrandByBrandCodeOrSellerName(brandCode);
-//            //需要将手机号进行解密
-//            String paramPhone = (String) params.get("mix_mobile");
-//            //明文手机号
-//            String phone = vopTokenService.decrypt(paramPhone);
-//            //查询会员信息
-//            Map<String, Object> paramMap = new HashMap<String, Object>();
-//            paramMap.put("memberSystem", brand.getMemberSystemGuid());
-//            paramMap.put("phone", phone);
-//            //查询出会员信息
-//            AccountView accountView = accountService.selectAccountInfo(paramMap);
-//
-//            //会员不存在的话 就返回可以注册
-//            if (null == accountView) {
-//                queryBindOut.setCode(VopMemEnum.MEM_E03.getCode());
-//                queryBindOut.setMessage(VopMemEnum.MEM_E03.getMsg());
-//                content.setBind_able(true);
-//                return queryBindOut;
-//            }
-//
-//            //会员存在，根据信息查询粉丝信息
-//            String open_id = (String) params.get("open_id");
-//            //根据openid查询粉丝信息和会员信息
-//            Map<String, String> fansLeadMap = new HashMap<>();
-//            fansLeadMap.put("accountGuid", accountView.getAccountGuidId());
-//            fansLeadMap.put("openId", open_id);
-//            fansLeadMap.put("type", "14");
-//            //跟进openid查询粉丝信息,理论上openid是和抖音上面的店铺相对应的，所以这里暂时只用openid查询信息
-//            FansLeads fansLeads = fansLeadsService.getOneFansLeads(fansLeadMap);
-//            //粉丝不存在，可以绑定
-//            if (null == fansLeads) {
-//                queryBindOut.setCode(VopMemEnum.MEM_E04.getCode());
-//                queryBindOut.setMessage(VopMemEnum.MEM_E04.getMsg());
-//                content.setBind_able(true);
-//                content.setBrand_member_card_id(accountView.getMemberNo());
-//                return queryBindOut;
-//            }
-//
-//            //如果粉丝和会员都存在
-//            queryBindOut.setCode(VopMemEnum.MEM_E05.getCode());
-//            queryBindOut.setMessage(VopMemEnum.MEM_E05.getMsg());
-//            content.setBind_able(false);
-//            return queryBindOut;
-//        }
-//
-//        // 系统异常
-//        return queryBindOut;
     }
 }

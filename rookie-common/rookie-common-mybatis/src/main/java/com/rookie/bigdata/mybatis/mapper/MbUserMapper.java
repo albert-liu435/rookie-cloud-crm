@@ -3,6 +3,7 @@ package com.rookie.bigdata.mybatis.mapper;
 import com.rookie.bigdata.common.MbUser;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Class FansMapper
@@ -19,6 +20,14 @@ public interface MbUserMapper {
      * @return
      */
     List<MbUser> getAll();
+
+    /**
+     * 根据请求参数查找会员信息
+     *
+     * @param map
+     * @return
+     */
+    MbUser getMbUserByMap(Map<String, String> map);
 
 //    /**
 //     * 根据Brand Code获取Brand信息

@@ -18,6 +18,8 @@ public class MbUser implements Serializable {
     private long id;
     //用户手机号
     private String phone;
+    //会员编号, TODO 会员编号的生成规则暂时由 brandCode+phone进行生成，
+    private String memberNo;
     //等级编号
     private String levelNo;
     //等级名称
