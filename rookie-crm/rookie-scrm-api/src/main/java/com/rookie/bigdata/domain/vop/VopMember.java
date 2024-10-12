@@ -19,7 +19,11 @@ public class VopMember implements Serializable {
     @SerializedName(value = "bind_able")
 //    @JsonAlias("bind_able")
     private boolean bindAble;
-
+    //会员编号
     @SerializedName("brand_member_card_id")
     private String memberNo;
+    //会员积分
+    private long point;
+    //会员等级
+    private String level;
 }

@@ -14,7 +14,7 @@
                 <result column="mix_phone" property="mixPhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
                 <result column="open_id" property="openId" jdbcType="VARCHAR" javaType="java.lang.String"/>
                 <result column="union_id" property="unionId" jdbcType="VARCHAR" javaType="java.lang.String"/>
-                <result column="f_type" property="type" jdbcType="NUMERIC" javaType="java.math.BigDecimal"/>
+                <result column="f_type" property="type" jdbcType="VARCHAR" javaType="java.lang.String"/>
 
 
         <!-- <result column="reg_channel" property="reg" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
@@ -29,5 +29,33 @@
         select *
         from crm.mb_fans
     </select>
+
+    <select id="getOneMbFansByMbFans" resultMap="mbFansResultMap" parameterType="com.rookie.bigdata.common.MbFans">
+        select *
+        from crm.mb_fans
+        where 1=1
+        <if test="openId!=null and openId!=''">
+            and open_id = #{openId}
+        </if>
+        <if test="type!=null and type!=''">
+            and f_type = #{type}
+        </if>
+        <if test="userId !=0 ">
+            and user_id = #{userId}
+        </if>
+        limit 1
+
+    </select>
+
+    <insert id="insertMbFans" useGeneratedKeys="true" keyProperty="id">
+        insert into crm.mb_fans(user_id, ouid, omid, nick_name, phone, mix_phone, open_id, union_id, f_type)
+        values (#{userId}, #{ouid}, #{omid}, #{nickName}, #{phone}, #{mixPhone}, #{openId}, #{unionId}, #{type})
+    </insert>
+
+    <update id="updateMbFansUserId">
+        update crm.mb_fans set user_id=0
+        where id=#{id}
+    </update>
+
 
 </mapper>

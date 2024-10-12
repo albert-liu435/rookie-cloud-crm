@@ -19,4 +19,10 @@ public interface MbFansMapper {
      * @return
      */
     List<MbFans> getAll();
+
+    MbFans getOneMbFansByMbFans(MbFans mbFans);
+
+    int insertMbFans(MbFans mbFans);
+
+    int updateMbFansUserId(MbFans mbFans);
 }

@@ -40,6 +40,9 @@
         <if test="brandCode!=null and brandCode!=''">
             and brand_code = #{brandCode}
         </if>
+        <if test="memberNo!=null and memberNo!=''">
+            and member_no = #{memberNo}
+        </if>
         limit 1
     </select>
 

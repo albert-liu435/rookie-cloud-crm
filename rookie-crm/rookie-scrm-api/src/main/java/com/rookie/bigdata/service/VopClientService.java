@@ -11,6 +11,12 @@ import java.util.Map;
  */
 public interface VopClientService {
 
+
+
+    String getAppKey();
+    String getAppSecret();
+
+
     /**
      * 进行校验，即验签
      *

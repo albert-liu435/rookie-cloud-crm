@@ -29,8 +29,27 @@ class MbFansMapperTest {
     @Test
     void testGetAll() {
         List<MbFans> all = fansMapper.getAll();
-        log.info("获取的数据条数：{}",all.size());
+        log.info("获取的数据条数：{}", all.size());
 
     }
+
+    @Test
+    void getOneMbFansByMbFans() {
+        MbFans mbFans = new MbFans();
+//        mbFans.setUserId(1);
+        mbFans.setOpenId("18200012120");
+        MbFans oneMbFansByMbFans = fansMapper.getOneMbFansByMbFans(mbFans);
+        log.info("获取的数据为: {}", oneMbFansByMbFans.toString());
+
+    }
+
+    @Test
+    void insertMbFans() {
+        MbFans mbFans = new MbFans();
+        mbFans.setPhone("abcd");
+        fansMapper.insertMbFans(mbFans);
+        log.info("插入的数据为：{}", mbFans.toString());
+    }
+
 
 }

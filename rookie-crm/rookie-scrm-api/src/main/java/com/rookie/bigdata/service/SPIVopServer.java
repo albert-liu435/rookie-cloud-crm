@@ -1,7 +1,7 @@
 package com.rookie.bigdata.service;
 
 
-import com.rookie.bigdata.domain.vop.VopBindQueryResponse;
+import com.rookie.bigdata.domain.vop.VopSPIResponse;
 import com.rookie.bigdata.domain.vop.VopMember;
 
 import java.util.Map;
@@ -23,5 +23,32 @@ public interface SPIVopServer {
      * @param params
      * @return
      */
-    VopBindQueryResponse<VopMember> vopQueryBind(Map<String, Object> params) throws Exception;
+    VopSPIResponse<VopMember> vopQueryBind(Map<String, Object> params) throws Exception;
+
+    /**
+     * 进行会员粉丝的绑定操作
+     *
+     * @param params
+     * @param jsonBody
+     * @return
+     */
+    VopSPIResponse<VopMember> vopBind(Map<String, Object> params, String jsonBody);
+
+    /**
+     * 进行粉丝的解绑操作
+     *
+     * @param params
+     * @param jsonBody
+     * @return
+     */
+    VopSPIResponse<VopMember> vopUnBind(Map<String, Object> params, String jsonBody);
+
+    /**
+     * 进行会员的注册
+     *
+     * @param params
+     * @param jsonBody
+     * @return
+     */
+    VopSPIResponse<VopMember> vopRegister(Map<String, Object> params, String jsonBody);
 }

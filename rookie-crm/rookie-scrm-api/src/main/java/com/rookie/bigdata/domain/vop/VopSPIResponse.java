@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @Version 1.0
  */
 @Data
-public class VopBindQueryResponse<T> implements Serializable {
+public class VopSPIResponse<T> implements Serializable {
 
     private String code;
 

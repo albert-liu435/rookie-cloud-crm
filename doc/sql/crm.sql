@@ -48,6 +48,7 @@ CREATE TABLE crm.mb_fans (
                                     omid varchar(50) DEFAULT NULL COMMENT '阿里omid',
                                     nick_name varchar(50) DEFAULT NULL COMMENT '昵称',
                                     phone varchar(50) DEFAULT NULL COMMENT '明文手机号',
+                                    mix_phone varchar(100) DEFAULT NULL COMMENT '密文手机号',
                                     mix_phone varchar(50) DEFAULT NULL  COMMENT '加密手机号',
                                     open_id varchar(100) DEFAULT NULL  COMMENT 'unionid',
                                     union_id varchar(100) DEFAULT NULL COMMENT 'openid',

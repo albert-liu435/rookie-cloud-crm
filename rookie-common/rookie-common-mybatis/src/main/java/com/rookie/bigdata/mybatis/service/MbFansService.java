@@ -1,6 +1,7 @@
 package com.rookie.bigdata.mybatis.service;
 
 import com.rookie.bigdata.common.MbFans;
+import com.rookie.bigdata.common.MbUser;
 
 /**
  * @Class MbFansService
@@ -11,13 +12,32 @@ import com.rookie.bigdata.common.MbFans;
  */
 public interface MbFansService {
 
+
     /**
      * 根据请求参数查询MbFans信息
      *
      * @param openId openId
-     * @param id     会员唯一ID
+     * @param userId 会员唯一ID
      * @param type   粉丝类型
      * @return
      */
-    MbFans getMbFansByParams(String openId, long id, String type);
+    MbFans getMbFansByParams(String openId, long userId, String type);
+
+    /**
+     * 进行MbFans创建并insert
+     *
+     * @param mbUser 会员信息
+     * @param openId 粉丝openid
+     * @param type   粉丝类型
+     * @return
+     */
+    MbFans createMbFans(MbUser mbUser, String openId, String type);
+
+    /**
+     * 对MbFans进行更新操作
+     *
+     * @param mbFans
+     * @return
+     */
+    int updateMbFansUserId(MbFans mbFans);
 }

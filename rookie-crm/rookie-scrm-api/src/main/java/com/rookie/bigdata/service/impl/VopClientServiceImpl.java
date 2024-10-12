@@ -37,6 +37,16 @@ public class VopClientServiceImpl implements VopClientService {
     }
 
     @Override
+    public String getAppKey() {
+        return this.appKey;
+    }
+
+    @Override
+    public String getAppSecret() {
+        return this.appSecret;
+    }
+
+    @Override
     public boolean verifySign(Map<String, Object> params, String receivedSig) {
         //        https://blog.51cto.com/u_15320818/3253260
 //        https://blog.csdn.net/qq_32332777/article/details/120325985

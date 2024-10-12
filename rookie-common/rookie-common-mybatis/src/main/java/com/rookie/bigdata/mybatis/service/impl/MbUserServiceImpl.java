@@ -26,10 +26,25 @@ public class MbUserServiceImpl implements MbUserService {
 
 
     @Override
+    public MbUser getMbUserByParams(String memberNo) {
+        return getMbUserByParams(memberNo, null, null);
+    }
+
+    @Override
     public MbUser getMbUserByParams(String phone, String brandCode) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("phone", phone);
+//        map.put("brandCode", brandCode);
+//        return mbUserMapper.getMbUserByMap(map);
+        return getMbUserByParams(phone, brandCode, null);
+    }
+
+    @Override
+    public MbUser getMbUserByParams(String memberNo, String phone, String brandCode) {
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
         map.put("brandCode", brandCode);
+        map.put("memberNo", memberNo);
         return mbUserMapper.getMbUserByMap(map);
     }
 }
