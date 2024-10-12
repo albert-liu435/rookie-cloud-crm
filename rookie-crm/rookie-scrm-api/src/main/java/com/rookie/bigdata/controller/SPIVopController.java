@@ -163,11 +163,6 @@ public class SPIVopController {
         vopBindQueryResponse.setMessage(SPIVopEnum.E99.getMsg());
 
 
-//        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        HttpServletRequest request = attrs.getRequest();
-//        String entity = RequestUtils.getJsonBody(request);
-
-
         try {
             vopBindQueryResponse = spiVopServer.vopQueryMemberInfo(params);
         } catch (Exception e) {
@@ -178,6 +173,36 @@ public class SPIVopController {
         return gson.toJson(vopBindQueryResponse);
 
     }
+
+
+    /**
+     * 积分变更
+     *
+     * @param params
+     * @return
+     */
+//    @RequestMapping("/updateMemberPoint")
+//    public String vopUpdateMemberPoint(@RequestParam Map<String, Object> params) {
+//        VopPointResponseOut vopResponseOut = new VopPointResponseOut();
+//
+//        vopResponseOut.setCode(VopMemEnum.MEM_E99.getCode());
+//        vopResponseOut.setMessage(VopMemEnum.MEM_E99.getMsg());
+//
+//
+//        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+//        HttpServletRequest request = attrs.getRequest();
+//        String entity = RequestUtils.getJsonBody(request);
+//
+//        try {
+//            vopResponseOut = vopService.vopUpdateMemberPoint(params, entity);
+//        } catch (Exception e) {
+//            //系统抛出异常
+//            logger.error("vop query updateMemberPoint {}", e.getMessage());
+//        }
+//
+//        return ngson.toJson(vopResponseOut);
+//
+//    }
 
 
 
