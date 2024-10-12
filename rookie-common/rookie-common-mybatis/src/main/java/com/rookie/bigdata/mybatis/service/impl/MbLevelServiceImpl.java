@@ -1,5 +1,6 @@
 package com.rookie.bigdata.mybatis.service.impl;
 
+import com.rookie.bigdata.common.MbLevel;
 import com.rookie.bigdata.mybatis.mapper.MbLevelMapper;
 import com.rookie.bigdata.mybatis.service.MbLevelService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,4 +22,12 @@ public class MbLevelServiceImpl implements MbLevelService {
     private MbLevelMapper mbLevelMapper;
 
 
+    @Override
+    public MbLevel getLevelByBrand(String brandCode, String levelNo) {
+        MbLevel mbLevel=new MbLevel();
+        mbLevel.setBrandCode(brandCode);
+        mbLevel.setLevelNo(levelNo);
+
+        return mbLevelMapper.getLevelByBrand(mbLevel);
+    }
 }

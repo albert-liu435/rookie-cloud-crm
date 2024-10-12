@@ -50,5 +50,13 @@ public interface SPIVopServer {
      * @param jsonBody
      * @return
      */
-    VopSPIResponse<VopMember> vopRegister(Map<String, Object> params, String jsonBody);
+    VopSPIResponse<VopMember> vopRegister(Map<String, Object> params, String jsonBody) throws Exception;
+
+    /**
+     * 会员信息查询
+     *
+     * @param params
+     * @return
+     */
+    VopSPIResponse vopQueryMemberInfo(Map<String, Object> params);
 }

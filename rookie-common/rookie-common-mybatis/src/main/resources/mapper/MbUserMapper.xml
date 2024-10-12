@@ -46,4 +46,12 @@
         limit 1
     </select>
 
+    <insert id="insertMbUser" useGeneratedKeys="true" keyProperty="id">
+        insert into crm.mb_user(phone, member_no, level_no, level_name, brand_code, reg_channel, reg_su_channel,
+                                reg_time, birthday, email, sex, point)
+        values (#{phone}, #{memberNo}, #{levelNo}, #{levelName}, #{brandCode}, #{regChannel}, #{regSubChannel},
+                #{regTime}, #{birthday}, #{email}, #{point})
+    </insert>
+
+
 </mapper>

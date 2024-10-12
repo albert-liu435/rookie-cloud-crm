@@ -34,4 +34,16 @@ class MbLevelMapperTest {
         }
 
     }
+
+
+    @Test
+    void getLevelByBrand(){
+        MbLevel mbLevel=new MbLevel();
+        mbLevel.setLevelNo("1");
+        mbLevel.setBrandCode("NBA");
+        MbLevel levelByBrand = mbLevelMapper.getLevelByBrand(mbLevel);
+        log.info("获取的等级信息：{}",levelByBrand.toString());
+
+    }
+
 }

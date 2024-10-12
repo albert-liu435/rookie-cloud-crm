@@ -145,10 +145,40 @@ public class SPIVopController {
             log.error("vop query register {}", e.getMessage());
         }
 
+        return gson.toJson(vopBindQueryResponse);
+
+    }
+
+
+    /**
+     * 会员信息查询
+     *
+     * @param params
+     * @return
+     */
+    @RequestMapping("/queryMemberInfo")
+    public String vopQueryMemberInfo(@RequestParam Map<String, Object> params) {
+        VopSPIResponse vopBindQueryResponse = new VopSPIResponse();
+        vopBindQueryResponse.setCode(SPIVopEnum.E99.getCode());
+        vopBindQueryResponse.setMessage(SPIVopEnum.E99.getMsg());
+
+
+//        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+//        HttpServletRequest request = attrs.getRequest();
+//        String entity = RequestUtils.getJsonBody(request);
+
+
+        try {
+            vopBindQueryResponse = spiVopServer.vopQueryMemberInfo(params);
+        } catch (Exception e) {
+            //系统抛出异常
+            log.error("vop query queryMemberInfo {}", e.getMessage());
+        }
 
         return gson.toJson(vopBindQueryResponse);
 
     }
+
 
 
 }

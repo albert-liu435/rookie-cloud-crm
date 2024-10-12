@@ -4,14 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rookie.bigdata.common.MbBrand;
 import com.rookie.bigdata.common.MbFans;
+import com.rookie.bigdata.common.MbLevel;
 import com.rookie.bigdata.common.MbUser;
 import com.rookie.bigdata.config.VopComServiceConfig;
+import com.rookie.bigdata.constant.SPIConstant;
 import com.rookie.bigdata.domain.vop.VopMemRequest;
 import com.rookie.bigdata.domain.vop.VopSPIResponse;
 import com.rookie.bigdata.domain.vop.VopMember;
 import com.rookie.bigdata.enums.SPIVopEnum;
 import com.rookie.bigdata.mybatis.service.MbBrandService;
 import com.rookie.bigdata.mybatis.service.MbFansService;
+import com.rookie.bigdata.mybatis.service.MbLevelService;
 import com.rookie.bigdata.mybatis.service.MbUserService;
 import com.rookie.bigdata.service.SPIVopServer;
 import com.rookie.bigdata.service.VopClientService;
@@ -50,6 +53,9 @@ public class SPIVopServerImpl implements SPIVopServer {
 
     @Autowired
     private MbFansService mbFansService;
+
+    @Autowired
+    private MbLevelService mbLevelService;
 
 
     @Override
@@ -169,8 +175,6 @@ public class SPIVopServerImpl implements SPIVopServer {
                 return vopSPIResponse;
             }
 
-            //TODO 构建粉丝并进行insert操作
-
             //构建粉丝信息，并进行insert操作
             MbFans fansLead = mbFansService.createMbFans(mbUser, openId, "1");
 
@@ -241,7 +245,145 @@ public class SPIVopServerImpl implements SPIVopServer {
     }
 
     @Override
-    public VopSPIResponse<VopMember> vopRegister(Map<String, Object> params, String jsonBody) {
-        return null;
+    public VopSPIResponse<VopMember> vopRegister(Map<String, Object> params, String jsonBody) throws Exception {
+        VopSPIResponse<VopMember> vopSPIResponse = new VopSPIResponse<VopMember>();
+        //系统异常
+        vopSPIResponse.setCode(SPIVopEnum.E06.getCode());
+        vopSPIResponse.setMessage(SPIVopEnum.E06.getMsg());
+        VopMember vopMember = new VopMember();
+        vopSPIResponse.setContent(vopMember);
+
+        //获取品牌
+        String brandCode = (String) params.get("brand_identify");
+        //获取service进行认证及其他信息
+        VopClientService vopClientService = VopComServiceConfig.getVopClientService(brandCode);
+        String receivedSig = (String) params.remove("sign");
+        params.put("body", jsonBody);
+        //进行验签,如果验签通过后则进行品牌查询
+        boolean flag = vopClientService.verifySign(params, receivedSig);
+        // 判断校验是否通过
+        if (flag) {
+            // 查询品牌信息
+            MbBrand brand = brandService.getBrandByCode(brandCode);
+
+            VopMemRequest vopMemRequest = ngson.fromJson(jsonBody, VopMemRequest.class);
+            //渠道和子渠道分别为 VIP VipMember
+            //需要将手机号进行解密
+            String mixMobile = vopMemRequest.getMixMobile();
+            String openId = vopMemRequest.getOpenId();
+            //明文手机号
+            String phone = vopClientService.decrypt(mixMobile);
+
+            MbUser mbUser = mbUserService.getMbUserByParams(phone, brand.getBrandCode());
+            //会员不为null表示会员已经存在，所以需要返回错误信息
+            if (null != mbUser) {
+                vopMember.setLevel(mbUser.getLevelNo());
+                vopMember.setPoint(mbUser.getPoint());
+
+
+                MbFans mbFans = mbFansService.getMbFansByParams(openId, mbUser.getId(), "1");
+                //粉丝不存在，无绑定关系
+                if (null != mbFans) {
+//                    logger.error("VOP无绑定关系:{}", body);
+                    vopSPIResponse.setCode(SPIVopEnum.E_11.getCode());
+                    vopSPIResponse.setMessage(SPIVopEnum.E_11.getMsg());
+                    return vopSPIResponse;
+                }
+
+
+                vopSPIResponse.setCode(SPIVopEnum.E_10.getCode());
+                vopSPIResponse.setMessage(SPIVopEnum.E_10.getMsg());
+
+                return vopSPIResponse;
+            }
+
+            //根据品牌选择等级信息,即选择最小的等级
+
+            MbLevel mbLevel = mbLevelService.getLevelByBrand(brand.getBrandCode(), "1");
+
+
+            MbUser mbUserCreate = mbUserService.createMbUser(phone, brand.getBrandCode(), SPIConstant.SPI_VOP_REG_CHANNEL, SPIConstant.SPI_VOP_REG_SUB_CHANNEL, mbLevel);
+            if (null == mbUserCreate) {
+
+                return vopSPIResponse;
+
+            }
+
+
+            MbFans fansLead = mbFansService.createMbFans(mbUser, openId, "1");
+
+            if (null == fansLead) {
+
+                return vopSPIResponse;
+
+            }
+
+            //如果粉丝和会员都存在
+            vopSPIResponse.setCode(SPIVopEnum.SUC.getCode());
+            vopSPIResponse.setMessage(SPIVopEnum.SUC.getMsg());
+            vopMember.setLevel(mbUserCreate.getLevelNo());
+            vopMember.setPoint(mbUser.getPoint());
+            return vopSPIResponse;
+
+        }
+
+        // 系统异常
+        return vopSPIResponse;
+    }
+
+    @Override
+    public VopSPIResponse vopQueryMemberInfo(Map<String, Object> params) {
+
+        VopSPIResponse vopResponseOut = new VopSPIResponse();
+        //系统异常
+        vopResponseOut.setCode(SPIVopEnum.E06.getCode());
+        vopResponseOut.setMessage(SPIVopEnum.E06.getMsg());
+        VopMember vopMember = new VopMember();
+        vopResponseOut.setContent(vopMember);
+
+
+        //获取品牌
+        String brandCode = (String) params.get("brand_identify");
+        //获取service进行认证及其他信息
+        VopClientService vopClientService = VopComServiceConfig.getVopClientService(brandCode);
+
+        String receivedSig = (String) params.remove("sign");
+        //进行验签,如果验签通过后则进行品牌查询
+        boolean flag = vopClientService.verifySign(params, receivedSig);
+
+
+        // 判断校验是否通过
+        if (flag) {
+            // 查询品牌信息
+            MbBrand brand = brandService.getBrandByCode(brandCode);
+            //查询出会员信息
+            String memberNo = (String) params.get("brand_member_card_id");
+
+            MbUser mbUser = mbUserService.getMbUserByParams(memberNo);
+
+            //会员不为null表示会员已经存在，所以需要返回错误信息
+            if (null == mbUser) {
+                vopResponseOut.setCode(SPIVopEnum.E12.getCode());
+                vopResponseOut.setMessage(SPIVopEnum.E12.getMsg());
+                return vopResponseOut;
+            }
+
+            //可用积分
+            long availablePoints = mbUser.getPoint();
+//
+            vopResponseOut.setCode(SPIVopEnum.SUC.getCode());
+            vopResponseOut.setMessage(SPIVopEnum.SUC.getMsg());
+
+            //会员等级编号
+            String levelNo = mbUser.getLevelNo();
+            vopMember.setLevel(levelNo);
+            vopMember.setPoint(availablePoints);
+            //设置版本号
+            Long version = System.currentTimeMillis();
+            vopMember.setVersion(version);
+            return vopResponseOut;
+        }
+        // 系统异常
+        return vopResponseOut;
     }
 }

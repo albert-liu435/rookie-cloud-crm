@@ -20,4 +20,18 @@
         from crm.mb_level
     </select>
 
+
+    <select id="getLevelByBrand" resultMap="mbLevelResultMap" parameterType="com.rookie.bigdata.common.MbLevel">
+        select *
+        from crm.mb_level
+        where 1=1
+        <if test="brandCode!=null and brandCode!=''">
+            and brand_code = #{brandCode}
+        </if>
+        <if test="levelNo!=null and levelNo!=''">
+            and level_no = #{levelNo}
+        </if>
+        limit 1
+    </select>
+
 </mapper>

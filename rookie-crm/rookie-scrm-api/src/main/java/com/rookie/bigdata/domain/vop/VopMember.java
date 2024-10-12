@@ -26,4 +26,6 @@ public class VopMember implements Serializable {
     private long point;
     //会员等级
     private String level;
+    //判断号,避免旧数据覆盖新数据
+    private Long version;
 }

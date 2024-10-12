@@ -19,4 +19,6 @@ public interface MbLevelMapper {
      * @return
      */
     List<MbLevel> getAll();
+
+    MbLevel getLevelByBrand(MbLevel mbLevel);
 }

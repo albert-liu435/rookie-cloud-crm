@@ -29,6 +29,8 @@ public interface MbUserMapper {
      */
     MbUser getMbUserByMap(Map<String, String> map);
 
+    int insertMbUser(MbUser mbUser);
+
 //    /**
 //     * 根据Brand Code获取Brand信息
 //     *

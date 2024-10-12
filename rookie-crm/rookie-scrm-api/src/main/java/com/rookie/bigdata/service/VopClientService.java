@@ -12,8 +12,8 @@ import java.util.Map;
 public interface VopClientService {
 
 
-
     String getAppKey();
+
     String getAppSecret();
 
 
@@ -30,9 +30,9 @@ public interface VopClientService {
     /**
      * 对手机号进行解析成明文手机号
      *
-     * @param source
+     * @param mixMobile 密文手机号
      * @return
      * @throws Exception
      */
-    String decrypt(String source) throws Exception;
+    String decrypt(String mixMobile) throws Exception;
 }

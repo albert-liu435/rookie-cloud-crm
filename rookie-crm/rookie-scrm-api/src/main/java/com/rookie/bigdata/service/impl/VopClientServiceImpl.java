@@ -57,14 +57,11 @@ public class VopClientServiceImpl implements VopClientService {
     }
 
 
-
-
     @Override
-    public String decrypt(String source) throws Exception {
+    public String decrypt(String mixMobile) throws Exception {
 
-        return VopAesEncryptUtils.decrypt(source, this.appKey);
+        return VopAesEncryptUtils.decrypt(mixMobile, this.appKey);
     }
-
 
 
 }
